@@ -1,19 +1,24 @@
-# Ajuda – Petshop
+# PetShop — Plataforma Web (Fase 1)
 
-## Sobre o sistema
-Site em HTML para um petshop, com produtos e serviços.
 
-## Como navegar
+* **Site publicado:** https://grassi-labs.github.io/petshop/
 
-- **Menu do cabeçalho:** leva às seções Acessórios, Rações, Higiene e Limpeza, Serviços e Contato.
-- **Acessórios, Rações e Higiene:** cada categoria mostra 2 produtos com foto, descrição e valor.
-- **Serviços:** banho e tosa, com valores com e sem tele-busca.
-- **Rodapé:** informações de autoria e contato.
+---
 
-## Tecnologias
-HTML5 PURO
+## 🎯 Objetivo
+Apresentar a estrutura inicial de comércio eletrônico para um petshop, desenvolvida exclusivamente em HTML5 semântico puro (sem CSS ou JavaScript), conforme os requisitos das Aulas 1 a 5.
 
-## Estrutura de arquivos
-- index.html
-- imagens/
-- readme.md
+---
+
+## ⚙️ Funcionalidades da Página
+* **Navegação rápida:** Menu no cabeçalho com links internos que direcionam o usuário para as seções da página.
+* **Catálogo de produtos:** Exibição de 6 produtos divididos em 3 categorias (Acessórios, Rações Não Perecíveis e Higiene/Limpeza), contendo imagem, descrição e valor.
+* **Serviços:** Apresentação dos serviços de banho e tosa com tabela de valores para atendimento no local e tele-busca em domicílio.
+* **Informações e contato:** Rodapé com dados de contato, autoria do projeto e link para retorno ao topo.
+
+---
+
+## 📁 Arquivos do Projeto
+* `index.html`: Código-fonte da página.
+* `imagens/`: Diretório contendo as imagens dos produtos.
+* `readme.md`: Documentação e guia de funcionalidades.
