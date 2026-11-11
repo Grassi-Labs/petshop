@@ -6,7 +6,7 @@
 ---
 
 ## 🎯 Objetivo
-Apresentar a estrutura inicial de comércio eletrônico para um petshop, desenvolvida exclusivamente em HTML5 semântico puro (sem CSS ou JavaScript), conforme os requisitos das Aulas 1 a 5.
+Apresentar a estrutura inicial de comércio eletrônico para um petshop, desenvolvida exclusivamente em HTML5 semântico puro (sem CSS ou JavaScript).
 
 ---
 
