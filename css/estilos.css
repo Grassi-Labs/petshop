@@ -1,0 +1,230 @@
+/* =========================================================
+   FOLHA DE ESTILOS - PETSHOP
+   ========================================================= */
+
+/* Configuração base da página */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    line-height: 1.6;
+}
+
+/* Barra superior de acessibilidade */
+.barra-acessibilidade {
+    background-color: #1b4332;
+    color: #ffffff;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+
+.barra-acessibilidade button {
+    margin-left: 6px;
+    transition: background-color 0.3s ease;
+}
+
+/* Cabeçalho principal */
+.cabecalho-principal {
+    background-color: #2d6a4f;
+    color: #ffffff;
+    padding: 25px 15px;
+    border-bottom: 4px solid #ffb703;
+}
+
+/* Regra de acessibilidade:
+   Texto escrito normal no HTML e transformado em maiúsculo via CSS */
+.titulo-maiusculo {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Links do menu de navegação */
+.menu-navegacao a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-navegacao a:hover,
+.menu-navegacao a:focus {
+    background-color: #ffb703;
+    color: #1b4332;
+}
+
+/* Destaque de foco para navegação por teclado */
+:focus {
+    outline: 3px solid #ff9f1c;
+    outline-offset: 2px;
+}
+
+/* Carrossel de imagens */
+.carrossel-petshop {
+    max-width: 900px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carrossel-petshop img {
+    height: 360px;
+    object-fit: cover;
+}
+
+.legenda-carrossel {
+    background-color: rgba(27, 67, 50, 0.85);
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+/* Cards de produtos com borda arredondada, sombra e transição hover */
+.card-produto {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-produto:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.imagem-produto {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #d8f3dc;
+    margin-bottom: 12px;
+}
+
+.etiqueta-destaque {
+    background-color: #ffb703;
+    color: #000000;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+/* Tabela de serviços */
+.tabela-servicos caption {
+    caption-side: top;
+    font-weight: bold;
+    color: #1b4332;
+    font-size: 1.1rem;
+}
+
+/* Estilização do formulário */
+.caixa-formulario {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+fieldset {
+    border: 1px solid #b7e4c7;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 20px;
+    background-color: #f9fdfb;
+}
+
+legend {
+    font-weight: bold;
+    color: #1b4332;
+    font-size: 1.15rem;
+    padding: 0 8px;
+    width: auto;
+    float: none;
+}
+
+/* Pseudo-classe :focus apenas nos campos de texto e seleção */
+.form-control:focus,
+.form-select:focus {
+    background-color: #fffdf0;
+    border-color: #2d6a4f;
+}
+
+.resumo-valor {
+    background-color: #d8f3dc;
+    border-left: 5px solid #2d6a4f;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #1b4332;
+}
+
+/* Rodapé */
+.rodape-principal {
+    background-color: #1b4332;
+    color: #ffffff;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+
+.rodape-principal a {
+    color: #ffb703;
+}
+
+/* =========================================================
+   MODO ALTO CONTRASTE PARA BAIXA VISÃO
+   ========================================================= */
+body.alto-contraste,
+body.alto-contraste .card-produto,
+body.alto-contraste .caixa-formulario,
+body.alto-contraste fieldset,
+body.alto-contraste .table,
+body.alto-contraste .table td,
+body.alto-contraste .table th {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffff00 !important;
+}
+
+body.alto-contraste .cabecalho-principal,
+body.alto-contraste .rodape-principal,
+body.alto-contraste .barra-acessibilidade {
+    background-color: #000000 !important;
+    border-bottom: 2px solid #ffff00;
+    border-top: 2px solid #ffff00;
+}
+
+body.alto-contraste a {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+body.alto-contraste .form-control,
+body.alto-contraste .form-select {
+    background-color: #111111 !important;
+    color: #ffff00 !important;
+    border: 1px solid #ffff00 !important;
+}
+
+body.alto-contraste .form-check-input {
+    border-color: #ffff00 !important;
+}
+
+body.alto-contraste .resumo-valor {
+    background-color: #111111 !important;
+    color: #ffff00 !important;
+    border-left-color: #ffff00 !important;
+}
