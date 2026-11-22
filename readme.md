@@ -6,7 +6,7 @@
 ---
 
 ## 🎯 Objetivo
-Evoluir a plataforma web do PetShop desenvolvida na Fase 1 utilizando CSS3, Bootstrap 5, JavaScript e diretrizes de acessibilidade, tornando a página mais dinâmica, interativa e acessível, conforme as Aulas 6 a 10.
+Evoluir a plataforma web do PetShop desenvolvida na Fase 1 utilizando CSS3, Bootstrap 5, JavaScript e diretrizes de acessibilidade, tornando a página mais dinâmica, interativa e acessível.
 
 ---
 
