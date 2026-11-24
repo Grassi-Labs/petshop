@@ -2,162 +2,169 @@
    FUNÇÕES JAVASCRIPT - PETSHOP
    ========================================================= */
 
-// Variável para controlar o tamanho da fonte
-var tamanhoFonteAtual = 16;
+var tamanho_fonte = 16;
 
-// Função temporal: atualiza data, hora e status da loja a cada 1 segundo
-function atualizarRelogio() {
-    var agora = new Date();
-    var dataFormatada = agora.toLocaleDateString("pt-BR");
-    var horaFormatada = agora.toLocaleTimeString("pt-BR");
-    var hora = agora.getHours();
-    var diaSemana = agora.getDay(); // 0 = Domingo, 6 = Sábado
+// Função temporal com setInterval: atualiza data, hora e status a cada 1000ms
+function atualiza_relogio() {
+    var data = new Date();
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    var hora = data.getHours();
+    var minuto = data.getMinutes();
+    var segundo = data.getSeconds();
 
-    var statusLoja = "";
-    // Loja aberta de segunda (1) a sábado (6), das 08h às 19h
-    if (diaSemana >= 1 && diaSemana <= 6 && hora >= 8 && hora < 19) {
-        statusLoja = "Aberto agora (atendimento até 19h)";
-    } else {
-        statusLoja = "Fechado no momento (agendamento online disponível 24h)";
+    if (dia < 10) {
+        dia = "0" + dia;
+    }
+    if (mes < 10) {
+        mes = "0" + mes;
+    }
+    if (hora < 10) {
+        hora = "0" + hora;
+    }
+    if (minuto < 10) {
+        minuto = "0" + minuto;
+    }
+    if (segundo < 10) {
+        segundo = "0" + segundo;
     }
 
-    var elementoRelogio = document.getElementById("relogio-status");
-    if (elementoRelogio) {
-        elementoRelogio.innerHTML = dataFormatada + " - " + horaFormatada + " | " + statusLoja;
+    var dia_semana = data.getDay();
+    var status = "Fechado no momento (agendamento online disponível 24h)";
+    if (dia_semana >= 1 && dia_semana <= 6 && hora >= 8 && hora < 19) {
+        status = "Aberto agora (atendimento até 19h)";
     }
+
+    document.getElementById("relogio_status").innerHTML =
+        dia + "/" + mes + "/" + ano + " - " + hora + ":" + minuto + ":" + segundo + " | " + status;
 }
 
-// Inicia o temporizador de 1000ms (1 segundo)
-setInterval(atualizarRelogio, 1000);
+setInterval(atualiza_relogio, 1000);
 
-// Configura a data mínima do calendário para hoje ao carregar a página
-function configurarDataMinima() {
-    atualizarRelogio();
-
-    var campoData = document.getElementById("data_agendamento");
-    if (campoData) {
-        var hoje = new Date();
-        var ano = hoje.getFullYear();
-        var mes = String(hoje.getMonth() + 1).padStart(2, "0");
-        var dia = String(hoje.getDate()).padStart(2, "0");
-        campoData.min = ano + "-" + mes + "-" + dia;
-    }
+// Inicializa o relógio e o valor padrão ao abrir a página
+function inicia_pagina() {
+    atualiza_relogio();
+    calcula_valor();
 }
 
 // Calcula o valor estimado do serviço conforme as opções marcadas no formulário
-function calcularValorServico() {
-    var total = 0;
+function calcula_valor() {
+    var valor = 0;
 
-    // Verifica qual serviço foi escolhido (radio button)
-    var servicoBanhoTosa = document.getElementById("servico_banho_tosa");
-    var servicoBanhoSimples = document.getElementById("servico_banho_simples");
-
-    if (servicoBanhoTosa && servicoBanhoTosa.checked) {
-        total = total + 60;
-    } else if (servicoBanhoSimples && servicoBanhoSimples.checked) {
-        total = total + 45;
+    if (document.getElementById("servico_banho_tosa").checked) {
+        valor = 60.00;
+    } else if (document.getElementById("servico_banho_simples").checked) {
+        valor = 45.00;
     }
 
-    // Verifica se o checkbox de hidratação extra está marcado
-    var checkHidratacao = document.getElementById("extra_hidratacao");
-    if (checkHidratacao && checkHidratacao.checked) {
-        total = total + 15;
+    if (document.getElementById("extra_hidratacao").checked) {
+        valor = valor + 15.00;
     }
 
-    // Verifica se o cliente escolheu tele-busca (+ R$ 25,00)
-    var radioTeleBusca = document.getElementById("metodo_telebusca");
-    if (radioTeleBusca && radioTeleBusca.checked) {
-        total = total + 25;
-    }
-
-    // Atualiza o valor na tela
-    var campoValor = document.getElementById("valor-estimado");
-    if (campoValor) {
-        campoValor.innerHTML = "R$ " + total.toFixed(2).replace(".", ",");
-    }
-}
-
-// Processa o envio do formulário e mostra a confirmação na tela
-function confirmarAgendamento(event) {
-    event.preventDefault(); // Evita recarregar a página no GitHub Pages
-
-    var nomeCliente = document.getElementById("nome_cliente").value;
-    var telefone = document.getElementById("telefone_cliente").value;
-    var nomePet = document.getElementById("nome_pet").value;
-    var racaPet = document.getElementById("raca_pet").value;
-    var idadePet = document.getElementById("idade_pet").value;
-    var dataAgenda = document.getElementById("data_agendamento").value;
-    var horaAgenda = document.getElementById("hora_agendamento").value;
-
-    // Identifica o serviço selecionado
-    var servicoTexto = "Banho e Tosa Tradicional";
-    if (document.getElementById("servico_banho_simples").checked) {
-        servicoTexto = "Banho Simples com Hidratação";
-    }
-
-    // Identifica o método de entrega/busca
-    var metodoTexto = "Entrega do pet no local (Balcão)";
     if (document.getElementById("metodo_telebusca").checked) {
-        metodoTexto = "Tele-busca em domicílio";
+        valor = valor + 25.00;
     }
 
-    // Formata a data de AAAA-MM-DD para DD/MM/AAAA
-    var partesData = dataAgenda.split("-");
-    var dataBr = partesData[2] + "/" + partesData[1] + "/" + partesData[0];
-
-    var valorFinal = document.getElementById("valor-estimado").innerHTML;
-
-    // Monta o resumo do cadastro e agendamento
-    var caixaResultado = document.getElementById("resultado-agendamento");
-    caixaResultado.className = "alert alert-success mt-4";
-    caixaResultado.innerHTML =
-        "<h4>Agendamento Confirmado com Sucesso!</h4>" +
-        "<p><strong>Tutor(a):</strong> " + nomeCliente + " | <strong>Telefone:</strong> " + telefone + "</p>" +
-        "<p><strong>Pet:</strong> " + nomePet + " (" + racaPet + ", " + idadePet + " ano(s))</p>" +
-        "<p><strong>Serviço:</strong> " + servicoTexto + " | <strong>Modalidade:</strong> " + metodoTexto + "</p>" +
-        "<p><strong>Data e Horário:</strong> " + dataBr + " às " + horaAgenda + "</p>" +
-        "<p class='mb-0'><strong>Valor Total Estimado:</strong> " + valorFinal + "</p>";
-
-    // Função temporal: exibe aviso temporário por 6 segundos usando setTimeout
-    var avisoTemp = document.getElementById("aviso-temporario");
-    avisoTemp.style.display = "block";
-    setTimeout(function () {
-        avisoTemp.style.display = "none";
-    }, 6000);
+    document.getElementById("valor_estimado").innerHTML =
+        "R$ " + parseFloat(valor).toFixed(2).replace(".", ",");
 }
 
-// Limpa o resumo na tela quando o usuário clica no botão Reset
-function limparFormulario() {
-    var caixaResultado = document.getElementById("resultado-agendamento");
-    caixaResultado.className = "";
-    caixaResultado.innerHTML = "";
+// Exibe mensagem temporária usando setTimeout
+function mostra_aviso_temporario() {
+    var caixa_aviso = document.getElementById("aviso_temporario");
+    caixa_aviso.style.display = "block";
+    setTimeout(esconde_aviso_temporario, 6000);
+}
 
-    // Aguarda o reset nativo dos campos e recalcula o valor padrão
-    setTimeout(calcularValorServico, 50);
+function esconde_aviso_temporario() {
+    document.getElementById("aviso_temporario").style.display = "none";
+}
+
+// Processa o cadastro e agendamento lendo os campos via getElementById
+function confirma_agendamento() {
+    var nome_cliente = document.getElementById("nome_cliente").value;
+    var cpf_cliente = document.getElementById("cpf_cliente").value;
+    var telefone_cliente = document.getElementById("telefone_cliente").value;
+    var email_cliente = document.getElementById("email_cliente").value;
+    var endereco_cliente = document.getElementById("endereco_cliente").value;
+    var nome_pet = document.getElementById("nome_pet").value;
+    var raca_pet = document.getElementById("raca_pet").value;
+    var idade_pet = document.getElementById("idade_pet").value;
+    var data_agenda = document.getElementById("data_agendamento").value;
+    var hora_agenda = document.getElementById("hora_agendamento").value;
+
+    if (nome_cliente == "" || cpf_cliente == "" || telefone_cliente == "" || email_cliente == "" ||
+        endereco_cliente == "" || nome_pet == "" || raca_pet == "" || idade_pet == "" ||
+        data_agenda == "" || hora_agenda == "") {
+        alert("Por favor, preencha todos os campos obrigatórios!");
+        return;
+    }
+
+    calcula_valor();
+
+    var servico = "Banho e Tosa Tradicional";
+    if (document.getElementById("servico_banho_simples").checked) {
+        servico = "Banho Simples com Hidratação";
+    }
+
+    var metodo = "Entrega do pet no local (Balcão)";
+    if (document.getElementById("metodo_telebusca").checked) {
+        metodo = "Tele-busca em domicílio";
+    }
+
+    var total = document.getElementById("valor_estimado").innerHTML;
+
+    var caixa_resultado = document.getElementById("resultado_agendamento");
+    caixa_resultado.className = "alert alert-success mt-4";
+    caixa_resultado.innerHTML =
+        "<h4>Agendamento Confirmado com Sucesso!</h4>" +
+        "<p><strong>Tutor(a):</strong> " + nome_cliente + " | <strong>Telefone:</strong> " + telefone_cliente + "</p>" +
+        "<p><strong>Pet:</strong> " + nome_pet + " (" + raca_pet + ", " + idade_pet + " ano(s))</p>" +
+        "<p><strong>Serviço:</strong> " + servico + " | <strong>Modalidade:</strong> " + metodo + "</p>" +
+        "<p><strong>Data e Horário:</strong> " + data_agenda + " às " + hora_agenda + "</p>" +
+        "<p class='mb-0'><strong>Valor Total Estimado:</strong> " + total + "</p>";
+
+    alert("Cadastro e agendamento confirmados com sucesso!");
+    mostra_aviso_temporario();
+}
+
+// Limpa o resumo na tela ao clicar em Limpar Formulário
+function limpa_formulario() {
+    var caixa_resultado = document.getElementById("resultado_agendamento");
+    caixa_resultado.className = "";
+    caixa_resultado.innerHTML = "";
+    esconde_aviso_temporario();
+    setTimeout(calcula_valor, 50);
 }
 
 // =========================================================
 // FUNÇÕES DE ACESSIBILIDADE
 // =========================================================
 
-function alterarFonte(diferenca) {
-    tamanhoFonteAtual = tamanhoFonteAtual + diferenca;
-
-    if (tamanhoFonteAtual < 14) {
-        tamanhoFonteAtual = 14;
+function aumenta_fonte() {
+    if (tamanho_fonte < 22) {
+        tamanho_fonte = tamanho_fonte + 2;
+        document.body.style.fontSize = tamanho_fonte + "px";
     }
-    if (tamanhoFonteAtual > 22) {
-        tamanhoFonteAtual = 22;
-    }
-
-    document.documentElement.style.fontSize = tamanhoFonteAtual + "px";
 }
 
-function restaurarFonte() {
-    tamanhoFonteAtual = 16;
-    document.documentElement.style.fontSize = "16px";
+function diminui_fonte() {
+    if (tamanho_fonte > 14) {
+        tamanho_fonte = tamanho_fonte - 2;
+        document.body.style.fontSize = tamanho_fonte + "px";
+    }
 }
 
-function alternarAltoContraste() {
-    document.body.classList.toggle("alto-contraste");
+function fonte_padrao() {
+    tamanho_fonte = 16;
+    document.body.style.fontSize = "16px";
+}
+
+function alto_contraste() {
+    if (document.body.className == "alto_contraste") {
+        document.body.className = "";
+    } else {
+        document.body.className = "alto_contraste";
+    }
 }

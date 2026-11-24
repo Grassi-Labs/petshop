@@ -2,34 +2,29 @@
    FOLHA DE ESTILOS - PETSHOP
    ========================================================= */
 
-/* Configuração base da página */
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
     background-color: #f8f9fa;
     color: #212529;
     line-height: 1.6;
 }
 
 /* Barra superior de acessibilidade */
-.barra-acessibilidade {
+.barra_acessibilidade {
     background-color: #1b4332;
     color: #ffffff;
     padding: 8px 0;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
-.barra-acessibilidade button {
+.barra_acessibilidade button {
     margin-left: 6px;
     transition: background-color 0.3s ease;
 }
 
 /* Cabeçalho principal */
-.cabecalho-principal {
+.cabecalho_principal {
     background-color: #2d6a4f;
     color: #ffffff;
     padding: 25px 15px;
@@ -38,14 +33,14 @@ body {
 
 /* Regra de acessibilidade:
    Texto escrito normal no HTML e transformado em maiúsculo via CSS */
-.titulo-maiusculo {
+.titulo_maiusculo {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
 }
 
 /* Links do menu de navegação */
-.menu-navegacao a {
+.menu_navegacao a {
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
@@ -55,8 +50,8 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menu-navegacao a:hover,
-.menu-navegacao a:focus {
+.menu_navegacao a:hover,
+.menu_navegacao a:focus {
     background-color: #ffb703;
     color: #1b4332;
 }
@@ -64,11 +59,10 @@ body {
 /* Destaque de foco para navegação por teclado */
 :focus {
     outline: 3px solid #ff9f1c;
-    outline-offset: 2px;
 }
 
-/* Carrossel de imagens */
-.carrossel-petshop {
+/* Carrossel de imagens (Bootstrap) */
+.carrossel_petshop {
     max-width: 900px;
     margin: 20px auto;
     border-radius: 12px;
@@ -76,19 +70,19 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.carrossel-petshop img {
+.carrossel_petshop img {
     height: 360px;
     object-fit: cover;
 }
 
-.legenda-carrossel {
+.legenda_carrossel {
     background-color: rgba(27, 67, 50, 0.85);
     border-radius: 8px;
     padding: 10px 15px;
 }
 
 /* Cards de produtos com borda arredondada, sombra e transição hover */
-.card-produto {
+.card_produto {
     background-color: #ffffff;
     border: 1px solid #dee2e6;
     border-radius: 10px;
@@ -98,12 +92,12 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-produto:hover {
+.card_produto:hover {
     transform: scale(1.02);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.imagem-produto {
+.imagem_produto {
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -112,25 +106,25 @@ body {
     margin-bottom: 12px;
 }
 
-.etiqueta-destaque {
+.etiqueta_destaque {
     background-color: #ffb703;
     color: #000000;
     padding: 3px 10px;
     border-radius: 12px;
     font-weight: bold;
-    font-size: 0.85rem;
+    font-size: 13px;
 }
 
 /* Tabela de serviços */
-.tabela-servicos caption {
+.tabela_servicos caption {
     caption-side: top;
     font-weight: bold;
     color: #1b4332;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 /* Estilização do formulário */
-.caixa-formulario {
+.caixa_formulario {
     background-color: #ffffff;
     border: 1px solid #ced4da;
     border-radius: 12px;
@@ -149,81 +143,81 @@ fieldset {
 legend {
     font-weight: bold;
     color: #1b4332;
-    font-size: 1.15rem;
+    font-size: 18px;
     padding: 0 8px;
     width: auto;
     float: none;
 }
 
-/* Pseudo-classe :focus apenas nos campos de texto e seleção */
+/* Pseudo-classe :focus apenas nos campos de texto e seleção (preserva checkbox e radio) */
 .form-control:focus,
 .form-select:focus {
     background-color: #fffdf0;
     border-color: #2d6a4f;
 }
 
-.resumo-valor {
+.resumo_valor {
     background-color: #d8f3dc;
     border-left: 5px solid #2d6a4f;
     padding: 12px 16px;
     border-radius: 6px;
-    font-size: 1.1rem;
+    font-size: 17px;
     font-weight: bold;
     color: #1b4332;
 }
 
 /* Rodapé */
-.rodape-principal {
+.rodape_principal {
     background-color: #1b4332;
     color: #ffffff;
     padding: 30px 15px;
     margin-top: 40px;
 }
 
-.rodape-principal a {
+.rodape_principal a {
     color: #ffb703;
 }
 
 /* =========================================================
    MODO ALTO CONTRASTE PARA BAIXA VISÃO
    ========================================================= */
-body.alto-contraste,
-body.alto-contraste .card-produto,
-body.alto-contraste .caixa-formulario,
-body.alto-contraste fieldset,
-body.alto-contraste .table,
-body.alto-contraste .table td,
-body.alto-contraste .table th {
+body.alto_contraste,
+body.alto_contraste .card_produto,
+body.alto_contraste .caixa_formulario,
+body.alto_contraste fieldset,
+body.alto_contraste .table,
+body.alto_contraste .table td,
+body.alto_contraste .table th {
     background-color: #000000 !important;
     color: #ffffff !important;
     border-color: #ffff00 !important;
 }
 
-body.alto-contraste .cabecalho-principal,
-body.alto-contraste .rodape-principal,
-body.alto-contraste .barra-acessibilidade {
+body.alto_contraste .cabecalho_principal,
+body.alto_contraste .rodape_principal,
+body.alto_contraste .barra_acessibilidade {
     background-color: #000000 !important;
     border-bottom: 2px solid #ffff00;
     border-top: 2px solid #ffff00;
 }
 
-body.alto-contraste a {
+body.alto_contraste a {
     color: #ffff00 !important;
     text-decoration: underline !important;
 }
 
-body.alto-contraste .form-control,
-body.alto-contraste .form-select {
+body.alto_contraste .form-control,
+body.alto_contraste .form-select {
     background-color: #111111 !important;
     color: #ffff00 !important;
     border: 1px solid #ffff00 !important;
 }
 
-body.alto-contraste .form-check-input {
+body.alto_contraste .form-check-input {
     border-color: #ffff00 !important;
 }
 
-body.alto-contraste .resumo-valor {
+body.alto_contraste .resumo_valor {
     background-color: #111111 !important;
     color: #ffff00 !important;
     border-left-color: #ffff00 !important;
