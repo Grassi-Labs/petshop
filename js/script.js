@@ -4,7 +4,7 @@
 
 var tamanho_fonte = 16;
 
-// Função temporal com setInterval: atualiza data, hora e status a cada 1000ms
+// Atualiza data, hora e status de atendimento a cada segundo
 function atualiza_relogio() {
     var data = new Date();
     var dia = data.getDate();
@@ -42,13 +42,13 @@ function atualiza_relogio() {
 
 setInterval(atualiza_relogio, 1000);
 
-// Inicializa o relógio e o valor padrão ao abrir a página
+// Inicializa o relógio e o valor padrão ao carregar a página
 function inicia_pagina() {
     atualiza_relogio();
     calcula_valor();
 }
 
-// Calcula o valor estimado do serviço conforme as opções marcadas no formulário
+// Calcula o valor estimado do serviço conforme as opções selecionadas
 function calcula_valor() {
     var valor = 0;
 
@@ -70,7 +70,7 @@ function calcula_valor() {
         "R$ " + parseFloat(valor).toFixed(2).replace(".", ",");
 }
 
-// Exibe mensagem temporária usando setTimeout
+// Exibe e oculta automaticamente o aviso temporário
 function mostra_aviso_temporario() {
     var caixa_aviso = document.getElementById("aviso_temporario");
     caixa_aviso.style.display = "block";
@@ -81,27 +81,17 @@ function esconde_aviso_temporario() {
     document.getElementById("aviso_temporario").style.display = "none";
 }
 
-// Processa o cadastro e agendamento lendo os campos via getElementById
+// Exibe o resumo do agendamento após a validação nativa do formulário
 function confirma_agendamento() {
+    calcula_valor();
+
     var nome_cliente = document.getElementById("nome_cliente").value;
-    var cpf_cliente = document.getElementById("cpf_cliente").value;
     var telefone_cliente = document.getElementById("telefone_cliente").value;
-    var email_cliente = document.getElementById("email_cliente").value;
-    var endereco_cliente = document.getElementById("endereco_cliente").value;
     var nome_pet = document.getElementById("nome_pet").value;
     var raca_pet = document.getElementById("raca_pet").value;
     var idade_pet = document.getElementById("idade_pet").value;
     var data_agenda = document.getElementById("data_agendamento").value;
     var hora_agenda = document.getElementById("hora_agendamento").value;
-
-    if (nome_cliente == "" || cpf_cliente == "" || telefone_cliente == "" || email_cliente == "" ||
-        endereco_cliente == "" || nome_pet == "" || raca_pet == "" || idade_pet == "" ||
-        data_agenda == "" || hora_agenda == "") {
-        alert("Por favor, preencha todos os campos obrigatórios!");
-        return;
-    }
-
-    calcula_valor();
 
     var servico = "Banho e Tosa Tradicional";
     if (document.getElementById("servico_banho_simples").checked) {
@@ -127,9 +117,10 @@ function confirma_agendamento() {
 
     alert("Cadastro e agendamento confirmados com sucesso!");
     mostra_aviso_temporario();
+    return false;
 }
 
-// Limpa o resumo na tela ao clicar em Limpar Formulário
+// Limpa o resumo na tela ao resetar o formulário
 function limpa_formulario() {
     var caixa_resultado = document.getElementById("resultado_agendamento");
     caixa_resultado.className = "";
@@ -139,7 +130,7 @@ function limpa_formulario() {
 }
 
 // =========================================================
-// FUNÇÕES DE ACESSIBILIDADE
+// CONTROLES DE ACESSIBILIDADE VISUAL
 // =========================================================
 
 function aumenta_fonte() {

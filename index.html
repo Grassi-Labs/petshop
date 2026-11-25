@@ -9,13 +9,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Folha de estilos própria separada -->
+    <!-- Folha de estilos própria -->
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body onload="inicia_pagina()">
 
-    <!-- Barra de Acessibilidade para baixa visão e leitores de tela -->
+    <!-- Barra de acessibilidade visual e navegação por teclado -->
     <div class="barra_acessibilidade">
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <a href="#conteudo_principal" class="text-white fw-bold">Pular para o conteúdo principal</a>
@@ -38,7 +38,7 @@
             <h1 class="titulo_maiusculo display-5"><span lang="en">PetShop</span></h1>
             <p class="lead mb-2"><em>Tudo o que seu <span lang="en">pet</span> precisa em um só lugar</em></p>
 
-            <!-- Relógio e status atualizados via JavaScript setInterval -->
+            <!-- Relógio e status atualizados em tempo real via JavaScript -->
             <p class="mb-3">
                 <span id="relogio_status" class="badge bg-light text-dark fs-6">
                     Carregando horário de atendimento...
@@ -60,7 +60,7 @@
     <!-- Conteúdo principal -->
     <main id="conteudo_principal" class="container my-4">
 
-        <!-- Seção Carrossel Bootstrap -->
+        <!-- Carrossel de destaques -->
         <section id="destaques" class="mb-5">
             <h2 class="text-center titulo_maiusculo mb-3">Destaques da Semana</h2>
 
@@ -231,7 +231,7 @@
 
         <hr />
 
-        <!-- Serviços do PetShop em Tabela Semântica -->
+        <!-- Serviços do PetShop -->
         <section id="servicos" class="my-4">
             <h2 class="titulo_maiusculo mb-3">Serviços Oferecidos</h2>
 
@@ -273,9 +273,9 @@
             <p>Preencha os dados abaixo para cadastrar seu <span lang="en">pet</span> e agendar banho ou tosa.</p>
 
             <div class="caixa_formulario">
-                <form id="form_agendamento" onreset="limpa_formulario()">
+                <form id="form_agendamento" onsubmit="return confirma_agendamento()" onreset="limpa_formulario()">
 
-                    <!-- Bloco 1: Dados do Cliente -->
+                    <!-- Dados do Cliente -->
                     <fieldset>
                         <legend>1. Dados do Cliente (Tutor)</legend>
                         <div class="row g-3">
@@ -331,7 +331,7 @@
                         </div>
                     </fieldset>
 
-                    <!-- Bloco 2: Dados do Pet -->
+                    <!-- Dados do Pet -->
                     <fieldset>
                         <legend>2. Identificação do <span lang="en">Pet</span></legend>
                         <div class="row g-3">
@@ -387,7 +387,7 @@
                         </div>
                     </fieldset>
 
-                    <!-- Bloco 3: Escolha do Serviço e Calendário de Agendamento -->
+                    <!-- Escolha do Serviço e Agendamento -->
                     <fieldset>
                         <legend>3. Escolha do Serviço e Agendamento</legend>
                         <div class="row g-3">
@@ -458,19 +458,19 @@
 
                     <!-- Botões de ação -->
                     <div class="d-flex flex-wrap gap-2 justify-content-center">
-                        <button type="button" class="btn btn-success btn-lg px-4" onclick="confirma_agendamento()">
+                        <button type="submit" class="btn btn-success btn-lg px-4">
                             Confirmar Cadastro e Agendamento
                         </button>
                         <button type="reset" class="btn btn-outline-secondary btn-lg px-4">Limpar Formulário</button>
                     </div>
                 </form>
 
-                <!-- Aviso controlado por setTimeout -->
+                <!-- Aviso temporário exibido após o envio -->
                 <div id="aviso_temporario" class="alert alert-info mt-3" style="display: none;">
                     Nossa equipe recebeu sua solicitação e entrará em contato via WhatsApp em instantes!
                 </div>
 
-                <!-- Área onde o JavaScript exibe o resumo do agendamento -->
+                <!-- Área de resumo do agendamento -->
                 <div id="resultado_agendamento"></div>
             </div>
         </section>
@@ -507,10 +507,10 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle (necessário para funcionamento do Carrossel) -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Arquivo JavaScript externo do sistema -->
+    <!-- Arquivo JavaScript externo -->
     <script src="js/script.js"></script>
 
 </body>

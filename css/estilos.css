@@ -1,5 +1,5 @@
 /* =========================================================
-   FOLHA DE ESTILOS - PETSHOP
+   FOLHA DE ESTILOS - PETSHOP (FASE 2)
    ========================================================= */
 
 body {
@@ -31,8 +31,7 @@ body {
     border-bottom: 4px solid #ffb703;
 }
 
-/* Regra de acessibilidade:
-   Texto escrito normal no HTML e transformado em maiúsculo via CSS */
+/* Transformação em maiúsculo via CSS para acessibilidade */
 .titulo_maiusculo {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -61,7 +60,7 @@ body {
     outline: 3px solid #ff9f1c;
 }
 
-/* Carrossel de imagens (Bootstrap) */
+/* Carrossel de imagens */
 .carrossel_petshop {
     max-width: 900px;
     margin: 20px auto;
@@ -81,7 +80,7 @@ body {
     padding: 10px 15px;
 }
 
-/* Cards de produtos com borda arredondada, sombra e transição hover */
+/* Cards de produtos */
 .card_produto {
     background-color: #ffffff;
     border: 1px solid #dee2e6;
@@ -149,7 +148,7 @@ legend {
     float: none;
 }
 
-/* Pseudo-classe :focus apenas nos campos de texto e seleção (preserva checkbox e radio) */
+/* Foco nos campos de texto e seleção (preserva checkbox e radio) */
 .form-control:focus,
 .form-select:focus {
     background-color: #fffdf0;
